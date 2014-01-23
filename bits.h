@@ -1,0 +1,27 @@
+
+int evenBits();
+int test_evenBits();
+int isEqual(int, int);
+int test_isEqual(int, int);
+int byteSwap(int, int, int);
+int test_byteSwap(int, int, int);
+int rotateRight(int, int);
+int test_rotateRight(int, int);
+int logicalNeg(int);
+int test_logicalNeg(int);
+int tmax();
+int test_tmax();
+int sign(int);
+int test_sign(int);
+int isGreater(int, int);
+int test_isGreater(int, int);
+int subOK(int, int);
+int test_subOK(int, int);
+int satAdd(int, int);
+int test_satAdd(int, int);
+int howManyBits(int);
+int test_howManyBits(int);
+unsigned float_half(unsigned);
+unsigned test_float_half(unsigned);
+int float_f2i(unsigned);
+int test_float_f2i(unsigned);
