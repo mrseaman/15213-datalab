@@ -1,6 +1,8 @@
 /* 
  * CS:APP Data Lab 
  * 
+ * Name: Zechen Zhang
+ * AndrewID: zechenz
  * <Please put your name and userid here>
  * 
  * bits.c - Source file with your solutions to the Lab.
@@ -138,9 +140,9 @@ NOTES:
  *   Rating: 1
  */
 int evenBits(void) {
-  int x;
-  x = (1 << 7) | (1 << 5) | (1 << 3) | (1 << 1);
-  return x;
+  int i = 0x55;
+  int j = i | (i << 8);
+  return j | (j << 16);
 }
 
 /* 
@@ -152,7 +154,7 @@ int evenBits(void) {
  */
 int isEqual(int x, int y) {
 
-  return !(~x | y);
+  return !(x ^ y);
 
 }
 /* 
@@ -165,8 +167,15 @@ int isEqual(int x, int y) {
  *  Rating: 2
  */
 int byteSwap(int x, int n, int m) {
-    return 2;
-
+    int nn = n << 3;
+    int mm = m << 3;
+    int a = 0xFF << nn;
+    int b = 0xFF << mm;
+    int aa = a & x;
+    int bb = b & x;
+    int aaa = aa >> nn << mm & b;
+    int bbb = bb >> mm << nn & a;
+    return (x & (~(a | b))) | aaa | bbb;
 }
 /* 
  * rotateRight - Rotate x to the right by n
@@ -177,7 +186,11 @@ int byteSwap(int x, int n, int m) {
  *   Rating: 3 
  */
 int rotateRight(int x, int n) {
-  return 2;
+	int a, x2, x3;
+	a = ~ (~ 0 << (32 + (~ n + 1)));
+	x2 = x >> n;
+	x3 = x << (32 + (~ n + 1));
+  return (x2 & a) | x3;
 }
 /* 
  * logicalNeg - implement the ! operator, using all of 
@@ -188,7 +201,7 @@ int rotateRight(int x, int n) {
  *   Rating: 4 
  */
 int logicalNeg(int x) {
-  return 2;
+  return (((~x + 1) | x) >> 31) + 1 ;
 }
 /* 
  * TMax - return maximum two's complement integer 
@@ -197,7 +210,7 @@ int logicalNeg(int x) {
  *   Rating: 1
  */
 int tmax(void) {
- return 2;
+  return ~(1 << 31);
 }
 /* 
  * sign - return 1 if positive, 0 if zero, and -1 if negative
@@ -208,7 +221,8 @@ int tmax(void) {
  *  Rating: 2
  */
 int sign(int x) {
-    return 2;
+     
+    return (x >> 31) | (!(!x));
 }
 /* 
  * isGreater - if x > y  then return 1, else return 0 
@@ -218,7 +232,8 @@ int sign(int x) {
  *   Rating: 3
  */
 int isGreater(int x, int y) {
-  return 2;
+  int diff = y + (~ x + 1);
+  return (diff >> 31) & 1;
 }
 /* 
  * subOK - Determine if can compute x-y without overflow
@@ -229,6 +244,7 @@ int isGreater(int x, int y) {
  *   Rating: 3
  */
 int subOK(int x, int y) {
+  
   return 2;
 }
 /*
