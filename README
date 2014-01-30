@@ -111,13 +111,21 @@ Hints:
 7. sign*: 注意返回值前31位与初始值的关系
 8. isGreater: 可以判断 (y - x) 以及 x,y 的 MSB 的关系
 9. subOK: 可以按照以下几步进行思考
-  * y = -y , 则问题变成考虑 (x + y) 是否超界
-  * x,y 的 MSB 相同时才可能超界
-  * x,y 的 MSB 不同时，x + y 的 MSB 与 x,y 不同时便发生了超界
-  * 注意 0x80000000 这个特殊情况 (-0x80000000 = 0x80000000)
+  + y = -y , 则问题变成考虑 (x + y) 是否超界
+  + x,y 的 MSB 相同时才可能超界
+  + x,y 的 MSB 不同时，x + y 的 MSB 与 x,y 不同时便发生了超界
+  + 注意 0x80000000 这个特殊情况 (-0x80000000 = 0x80000000)
 10. satAdd: 与上题思路基本相同
 11. howManyBits: 可以按照以下几步进行思考
   * 当 x 的 MSB = 1 时取 not, 将其转化为占相同位数的 MSB = 0 的数
   * 将 x 中第一个为 ‘1’ 的位之后的所有位均变为 ‘1’
   * 计算 x 中有多少 ‘1’
   * 加上 MSB 所占的一位即为所需位数
+12. float_half: 根据 Exp 可以分为3种情况，分别进行操作
+  + Exp == 0xFF, NaN or infinity
+  + 1 < Exp < 0xFF, Normalized value
+  + Exp == 0 || Exp == 1, Normalized value, 需要考虑进位问题
+13. float_f2i: 弃尾取整，考虑 Exp - bias 的值
+  + 30 < Exp - bias
+  + Exp - bias < 0
+  + 0 < Exp - bias < 30
