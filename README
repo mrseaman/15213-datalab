@@ -101,3 +101,23 @@ driver.pl*	- Driver program that uses the bdd checker and dlc to autograde bits.
 fshow.c		- Helper for examining floating-point representations
 ishow.c		- Helper for examining integer representations
 
+Hints:
+1. evenBits*: 利用0x55来构造偶数位是1的整数.
+2. isEqual*: 利用xor来判断两数是否相等.
+3. byteSwap: 可以将需要交换的bytes先提取出来，右移至最右边再互换位置，与原数剩余部分取or得到结果
+4. rotateRight: 可以将要rotate的n位先取出，将原数右移，再将取出的n位左移至最左端再与原数剩余位数取or合并
+5. logicalNeg*: 利用 0 与 (~ 0 + 1) 的 MSB 都是 0 进行判断
+6. tmax*: 太简单了没什么好说的
+7. sign*: 注意返回值前31位与初始值的关系
+8. isGreater: 可以判断 (y - x) 以及 x,y 的 MSB 的关系
+9. subOK: 可以按照以下几步进行思考
+  * y = -y , 则问题变成考虑 (x + y) 是否超界
+  * x,y 的 MSB 相同时才可能超界
+  * x,y 的 MSB 不同时，x + y 的 MSB 与 x,y 不同时便发生了超界
+  * 注意 0x80000000 这个特殊情况 (-0x80000000 = 0x80000000)
+10. satAdd: 与上题思路基本相同
+11. howManyBits: 可以按照以下几步进行思考
+  * 当 x 的 MSB = 1 时取 not, 将其转化为占相同位数的 MSB = 0 的数
+  * 将 x 中第一个为 ‘1’ 的位之后的所有位均变为 ‘1’
+  * 计算 x 中有多少 ‘1’
+  * 加上 MSB 所占的一位即为所需位数
