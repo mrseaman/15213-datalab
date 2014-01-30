@@ -102,6 +102,7 @@ fshow.c		- Helper for examining floating-point representations
 ishow.c		- Helper for examining integer representations
 
 Hints:
+
 1. evenBits*: 利用0x55来构造偶数位是1的整数.
 2. isEqual*: 利用xor来判断两数是否相等.
 3. byteSwap: 可以将需要交换的bytes先提取出来，右移至最右边再互换位置，与原数剩余部分取or得到结果
